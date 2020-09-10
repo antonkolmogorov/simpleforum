@@ -62,6 +62,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
+	@JsonIgnore
 	@Column(name = "role")
 	@Enumerated(EnumType.STRING)
 	private UserRole role = UserRole.USER;

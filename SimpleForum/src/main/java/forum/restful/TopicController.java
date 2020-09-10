@@ -43,7 +43,11 @@ public class TopicController {
 	public Set<ForumEntity> getTopic(@RequestParam(name = "id", required = true) int id)
 			throws HibernateException, IllegalAccessException, IllegalArgumentException, InvocationTargetException,
 			NoSuchMethodException, SecurityException {
-		return dao.getTopic(id).getEntities();
+		Topic topic = dao.getTopic(id);
+		if (topic == null) {
+			return null;
+		}
+		return topic.getEntities();
 	}
 
 	@RequestMapping(ROOTS)
