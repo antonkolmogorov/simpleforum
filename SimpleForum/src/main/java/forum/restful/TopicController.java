@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import forum.dao.TopicDao;
 import forum.entity.ForumEntity;
@@ -45,7 +46,7 @@ public class TopicController {
 			NoSuchMethodException, SecurityException {
 		Topic topic = dao.getTopic(id);
 		if (topic == null) {
-			return null;
+			throw new ResourceNotFoundException("Topic not found");
 		}
 		return topic.getEntities();
 	}
